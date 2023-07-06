@@ -1,0 +1,37 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+
+    <!-- login -->
+    <div class="container login">
+        <div class="row">
+            <div class="col-md-4" id="side1">
+                <h3>BIENVENIDO A GARDEN WARFARE MELIPILLA</h3>
+                <p>Crear nueva cuenta</p>
+                <div id="btn"><a href="{% url 'registro'  %}">Registrarse</a></div>
+            </div>
+            
+            <div class="col-md-8" id="side2">
+                <h3>Iniciar sesion</h3>
+
+                <div class="inp">
+                <form action="" method="post" id="inp">
+            {% csrf_token %}
+            {{form | crispy }} 
+            <p>¿Olvidaste tu contraseña?</p>
+                <div class="icons">
+                    <i class="fa-brands fa-twitter"></i>
+                    <i class="fa-brands fa-facebook-f"></i>
+                    <i class="fa-brands fa-instagram"></i>
+                </div>
+            <div id="login"><button type="submit">Iniciar sesion 
+            </button></div>
+           </form> </div>
+        </div>
+        </div>
+    </div>
+    <!-- login -->
+    {% endblock %}

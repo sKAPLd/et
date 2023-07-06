@@ -1,0 +1,153 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block content %}
+
+  <!--carousel-->
+  <div id="carouselExampleIndicators" class="carousel slide">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+            aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+            aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+            aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+        <div class="carousel-item carousel-image bg-img-1 active">
+            <img src="{% static  'img2/Noticias-01-1.jpg' %}" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item carousel-image  bg-img-2">
+            <img src="{% static 'img2/cropped-1.jpg' %}" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item carousel-image  bg-img-3">
+            <img src="{% static  'img2/cropped-2.jpg' %}" class="d-block w-100" alt="...">
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+        data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+        data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+  <!--seccion cards-->
+  <div class="container" id="top-cards">
+    <div class="row">
+        <div class="col-md-5 py-3 py-md-0">
+            <div class="card" style="background-color: #00ff55b9;">
+                <img src="{% static 'img2/Maseta.jfif'  %}" alt="">
+                <div class="card-img-overlay">
+                    <h5 class="card-titel">Accesorios</h5>
+                    <p>Macetero gris RARAN.</p>
+                    <p><strong>$12.000 <strike>25.990</strike></strong></p>
+                    <button>Ordenar</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 py-3 py-md-0">
+            <div class="card" style="background-color: #00ff55b9;">
+                <img src="{%static 'img2/Semilla Tomate.jpg' %}" alt="">
+                <div class="card-img-overlay">
+                    <h5 class="card-titel">Semillas</h5>
+                    <p>Semillas De Tomate .</p>
+                    <p><strong>$1.500 <strike>$3.000</strike></strong></p>
+                    <button>Ordenar</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 py-3 py-md-0">
+            <div class="card" style="background-color: #00ff55b9;">
+                <img src="{% static  'img2/pala.jpg' %}" alt="">
+                <div class="card-img-overlay">
+                    <h5 class="card-titel">Herramienta</h5>
+                    <p>Pala Acero</p>
+                    <p><strong>$23.000 <strike>$25.000</strike></strong></p>
+                    <button>Ordenar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  <!--seccion cards-->
+
+  <!--banner-->
+  <div class="banner">
+    <div class="content">
+      <h1>Susbribete para obtener descuentos en todas tus compras</h1>
+      <div id="bannerbtn"><button><a href="suscribiones.html"></a> Suscribirse</button>
+      </div>
+    </div>
+  </div>
+  <!--banner-->
+  <!-- product cards -->
+  <div class="container" id="product-cards">
+    <h1 class="text-center">PRODUCTOS</h1>
+    <div class="row" style="margin-top: 30px;">
+        {% for accesorio in accesorios %}
+        <div class="col-md-3 py-3 py-md-0">
+            <div class="card">
+                <img src="{{ accesorio.imagen }}" alt="">
+                <div class="card-body">
+                    <h3>{{ accesorio.detalle }}</h3>
+                    <div class="star">
+                        <i class="fas fa-star checked"></i>
+                        <i class="fas fa-star checked"></i>
+                        <i class="fas fa-star checked"></i>
+                        <i class="fas fa-star checked"></i>
+                        <i class="fas fa-star checked"></i>
+                    </div>
+                    <h5>{{ accesorio.precio }} <strike>{{ accesorio.tachado }}</strike><span>quedan</span> 
+                      <span>{{ accesorio.stock  }}</span></h5>
+                </div>
+                
+            </div>
+            <a href="{% url 'addtocar' accesorio.codigo  %}">            <button>Ordenar <span><i class="fa-solid fa-cart-shopping"></i></span> </button>
+            </a>
+
+        </div>
+       {% endfor %}
+      
+        
+    </div>
+    <a href="{% url 'catalogo' %}" id="viewmorebtn">Ver Más</a>
+  </div>
+  <!-- product cards -->
+  <!-- product -->
+    <div class="container" style="margin-top: 100px;">
+      <hr>
+    </div>
+    <div class="container">
+      <h3 style="font-weight: bold;">PRODUCTOS.</h3>
+      <p>Todos nuestros productos son de calidad y certificados</p>
+
+      <hr>
+    </div>
+  <!-- product -->
+  <!-- offer -->
+    <div class="container" id="offer">
+      <div class="row">
+          <div class="col-md-4 py-3 py-md-0">
+              <i class="fa-solid fa-cart-shopping"></i>
+              <h5>Envio Gratis</h5>
+              <p>Por compras sobre $30.000</p>
+          </div>
+          <div class="col-md-4 py-3 py-md-0">
+              <i class="fa-solid fa-truck"></i>
+              <h5>Envio Rapido</h5>
+              <p>Todo Chile</p>
+          </div>
+          <div class="col-md-4 py-3 py-md-0">
+              <i class="fa-solid fa-thumbs-up"></i>
+              <h5>Gran Opcion</h5>
+              <p>Muchos Productos y Ofertas</p>
+          </div>
+      </div>
+     
+  </div>
+  <!-- offer -->
+  
+{% endblock %}

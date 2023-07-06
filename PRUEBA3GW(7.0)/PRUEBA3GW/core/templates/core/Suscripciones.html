@@ -1,0 +1,41 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block content %}
+
+    <!-- login -->
+    <div class="container login">
+        <div class="row">
+            <div class="col-md-4" id="side1">
+                <h3>suscribete ahora y obtiene los siguentes beneficios:</h3>
+                <p>-Descuentos Semanales</p>
+                <p>-Ofretas Exclusivas</p>
+                <p>-Envios Gratis</p>
+            </div>
+            <div class="col-md-8" id="side2">
+                {%if suscrito%}
+                <h3>Felicidades, Ya estas suscrito!</h3>
+                <small>Disfruta de los beneficios</small>
+
+                {% else %}
+                <h3>Haste Colaborador </h3>
+                <div class="inp">
+                 
+                <p>recuerda que tienes que ser un usario registrado  para poder usar este Beneficio</p>
+                <div class="icons">
+                    <i class="fa-brands fa-twitter"></i>
+                    <i class="fa-brands fa-facebook-f"></i>
+                    <i class="fa-brands fa-instagram"></i>
+                </div>
+                <form action="{% url 'suscribirme' %}" method="post">
+                    {% csrf_token  %}
+                    <button type="submit" id="btn-signup">Suscribirse</button>
+
+                </form>
+
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <!-- login -->
+    {% endblock %}
+ 

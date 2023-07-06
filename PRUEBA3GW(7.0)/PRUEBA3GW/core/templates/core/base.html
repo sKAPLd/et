@@ -1,0 +1,176 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static  'estilo.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!--Boostrap link-->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+  <!--Boostrap link-->
+  <title>GARDEN WARFARE MELIPILLA</title>
+</head>
+
+<body>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
+    crossorigin="anonymous"></script>
+  <!--Navbar-->
+   <div class="top-navbar">
+    <div class="top-icons">
+      <i class="fa-brands fa-twitter"></i>
+      <i class="fa-brands fa-facebook-f"></i>
+      <i class="fa-brands fa-instagram"></i>
+    </div>
+    <div class="other-links">
+      {% if user.is_authenticated %}
+      {{user.username}}
+      {% if suscrito %}
+        ⭐
+      {% else %}
+        ❌
+      <button id="btn-signup"><a href="{% url 'subs' %}">Suscribirse</a></button>
+
+      {% endif %}
+      <button id="btn-login"><a href="{% url 'logout' %}">Salir</a></button>
+
+      {% else  %}
+      <button id="btn-login"><a href="{% url 'login' %}">Inicio Sesion</a></button>
+      <button id="btn-signup"><a href="{% url 'registro' %}">Registro</a></button>
+      <!--<button id="btn-signup"><a href="{% url 'subs' %}">Suscribirse</a></button> -->
+      {% endif %}
+     
+
+
+      <i class="fa-solid fa-user"></i>
+      <i class="fa-solid fa-cart-shopping"></i>
+
+    </div>
+  </div>
+
+  <div class="home-section">
+    <!--navbar-->
+    <nav class="navbar navbar-expand-lg" id="navbar">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="index.html"><img src="{%static 'img2/klipartz.com2.png' %}" alt="" width="100px"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span><i class="fa-solid fa-bars" style="color: white;"></i></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'catalogo' %}">Productos</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                Otros
+              </a>
+              <ul class="dropdown-menu" style="background-color: white;">
+                <li><a class="dropdown-item" href="{% url 'historial' %}">Historial</a></li>
+                <li><a class="dropdown-item" href="{% url 'carrito' %}">Carrito</a></li>
+                <!--<li><a class="dropdown-item" href="{% url 'adminproducto' %}">Administrar Productos</a></li>
+                <li><a class="dropdown-item" href="{% url 'adminC'   %}">Administrar Usuarios</a></li>-->
+
+
+              </ul>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'nosotros'  %}">Nosotros</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'contacto' %}">Contactenos</a>
+            </li>
+          </ul>
+          </li>
+          <form class="d-flex" role="Buscar">
+            <input class="form-control me-2" type="Buscar" placeholder="Buscar" aria-label="Buscar">
+            <button class="btn btn-outline-success" type="submit">Buscar</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+    <!--navbar-->
+  </div>
+  {% block content %}
+  {% endblock %}
+
+
+
+  <!-- footer -->
+  <footer id="footer" style="margin-top: 50px;">
+    <div class="footer-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 footer-content">
+                    <h3>GARDEN WARFARE MELIPILLA</h3>
+
+                    <p>
+                      vicuna mackenna 8392
+                    </p>
+                    <strong><i class="fas fa-phone"></i> Telefono: <strong>+56971254752</strong></strong><br>
+                    <strong><i class="fa-solid fa-envelope"></i> Email: <strong>GARDEN.WARFARE.ME@gmail.com</strong></strong>
+                </div>
+                <div class="col-lg-3 col-md-6 footer-links">
+                    <h4>Enlaces Utiles</h4>
+                    <ul>
+                      <li><a href="{% url 'home'  %}">Inicio</a></li>
+                      <li><a href="nosotros.html">Nosotros</a></li>
+                      <li><a href="contacto.html">Contacto</a></li>
+                      <li><a href="#">Servicio</a></li>
+                      <li><a href="#">Politicas de Privacidad</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 footer-links">
+                    <h4>Otros Servicios</h4>
+                    <ul>
+                      <li><a href="historial.html">Historial</a></li>
+                      <li><a href="Seguimiento.html">Seguimiento</a></li>
+                      <li><a href="Suscripciones.html">Suscripciones</a></li>
+                      <li><a href="C_productos.html">Administrar Productos</a></li>
+                      <li><a href="C.html">Administrar Usuarios</a></li>
+
+
+                  </ul>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 footer-links">
+                    <h4>Nuestras Redes Sociales</h4>
+                    <p>Reduerda Seguirnos en nuestras redes sociales para estar al dia con nuevos productos y ofertas </p>
+                    <div class="socail-links mt-3">
+                        <a href="#" class="twiiter"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#" class="twiiter"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="twiiter"><i class="fa-brands fa-google-plus"></i></a>
+                        <a href="#" class="twiiter"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="twiiter"><i class="fa-brands fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="container py-4">
+        <div class="copyright">
+            &copy; Copyright <strong>GARDEN WARFARE MELIPILLA</strong>
+        </div>
+        <div class="credits">
+            Diseñado por <a href="#">Alvaro y Emanuel</a>
+        </div>
+    </div>
+  </footer>
+  <!-- footer -->
+
+
+
+
+</body>
+
+</html>
+
